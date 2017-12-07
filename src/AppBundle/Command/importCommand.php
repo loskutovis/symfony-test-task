@@ -5,6 +5,7 @@ namespace AppBundle\Command;
 use AppBundle\Entity\TblProductData;
 use AppBundle\Service\AbstractParser;
 use AppBundle\Service\CsvParser;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,7 +34,11 @@ class importCommand extends ContainerAwareCommand
      * @var string $file Path to the csv file
      * @var integer $isTest Type of the environment
      * @var integer $itemsTotal Number of items
-     * @var AbstractParser $csv Content of the file
+     * @var integer $itemsSkipped Number of skipped elements
+     * @var integer $itemsProcessed Number of processed elements
+     * @var AbstractParser $parser
+     * @var EntityManager $em
+     * @var array $parsedData Content of the file
      * @var TblProductData|null $productData Product data from the file
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -46,13 +51,12 @@ class importCommand extends ContainerAwareCommand
         if (!file_exists($file)) {
             $output->writeln('The file does not exist');
         } else {
+            $em = $this->getContainer()->get('doctrine')->getManager();
             $parser = new CsvParser($file);
             $parsedData = $parser->parse();
 
             $itemsTotal = count($parsedData);
             $notImported = [];
-
-            $em = $this->getContainer()->get('doctrine')->getManager();
 
             foreach ($parsedData as $data) {
                 $productData = TblProductData::loadFields($data);

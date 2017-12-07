@@ -2,9 +2,9 @@
 
 namespace Tests\AppBundle\Entity;
 
-
 use AppBundle\Entity\TblProductData;
 use PHPUnit\Framework\TestCase;
+use Exception;
 
 /**
  * Class TblProductDataTest
@@ -52,5 +52,14 @@ class TblProductDataTest extends TestCase
     public function testCheckProductData()
     {
         $this->assertEquals(true, $this->productData->checkProductData());
+    }
+
+    /**
+     * @expectedException Exception
+     * @throws Exception
+     */
+    public function testCheckValue()
+    {
+        $this->productData->checkValue('');
     }
 }
