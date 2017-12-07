@@ -46,3 +46,9 @@
 /.web-server-pid
 
 /vendor/
+/.idea/
+Будет удалено .idea/
+Будет удалено tests/AppBundle/Command/
+Будет удалено var/cache/
+Будет удалено var/logs/
+Будет удалено var/sessions/
