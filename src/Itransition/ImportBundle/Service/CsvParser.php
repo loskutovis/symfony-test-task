@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Service;
+namespace Itransition\ImportBundle\Service;
 
 use parseCSV;
 

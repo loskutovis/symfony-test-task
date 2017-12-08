@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\AppBundle\Entity;
+namespace Tests\Itransition\ImportBundle\Entity;
 
-use AppBundle\Entity\Product;
+use Itransition\ImportBundle\Entity\Product;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ProductTest
- * @package Tests\AppBundle\Entity
+ * @package Tests\ImportBundle\Entity
  */
 class ProductTest extends TestCase
 {

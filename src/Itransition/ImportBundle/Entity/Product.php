@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Itransition\ImportBundle\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,6 +19,7 @@ class Product
      * @var integer MAX_PRICE
      * @var integer MIN_STOCK
      * @var integer MIN_PRICE
+     * @var string DISCOUNTED
      */
     const MAX_PRICE = 1000;
     const MIN_PRICE = 5;

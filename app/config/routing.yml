@@ -1,3 +1,4 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+itransition_import:
+    resource: "@ImportBundle/Controller/"
+    type:     annotation
+    prefix:   /

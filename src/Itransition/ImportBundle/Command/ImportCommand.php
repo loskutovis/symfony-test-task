@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Command;
+namespace Itransition\ImportBundle\Command;
 
-use AppBundle\Entity\Product;
-use AppBundle\Service\AbstractParser;
-use AppBundle\Service\CsvParser;
+use Itransition\ImportBundle\Entity\Product;
+use Itransition\ImportBundle\Service\AbstractParser;
+use Itransition\ImportBundle\Service\CsvParser;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -12,8 +12,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class importCommand
- * @package AppBundle\Command
+ * Class ImportCommand
+ * @package Itransition\ImportBundle\Command
  */
 class ImportCommand extends ContainerAwareCommand
 {
