@@ -149,4 +149,3 @@ class Product
       return key_exists($key, $this->dataFromFile) ? $this->dataFromFile[$key] : null;
     }
 }
-
