@@ -57,7 +57,6 @@ class Product
     /**
      * @var \DateTime
      *
-     * @Assert\NotBlank()
      * @Assert\DateTime()
      * @ORM\Column(name="dtmAdded", type="datetime", nullable=true)
      */
@@ -127,14 +126,16 @@ class Product
      * @param $payload
      */
     public function validate(ExecutionContextInterface $context, $payload) {
-        if (strtolower($this->discontinued) === Product::DISCOUNTED) {
-            $this->discontinued = new DateTime();
-        }
-
         if ((float) $this->price > Product::MAX_PRICE || ((float) $this->price < Product::MIN_PRICE &&
-                (int) $this->stock < Product::MIN_STOCK)) {
+                (int) $this->stock < Product::MIN_STOCK) || !in_array($this->discontinued, ['', Product::DISCOUNTED])) {
             $context->buildViolation('Wrong stock and price values')
                 ->addViolation();
+        }
+
+        if (strtolower($this->discontinued) === Product::DISCOUNTED) {
+            $this->discontinued = new DateTime();
+        } else {
+            $this->discontinued = null;
         }
     }
 
