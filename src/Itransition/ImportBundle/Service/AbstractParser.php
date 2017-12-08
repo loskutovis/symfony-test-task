@@ -1,6 +1,6 @@
 <?php
-
 namespace Itransition\ImportBundle\Service;
+
 
 /**
  * Interface AbstractParser

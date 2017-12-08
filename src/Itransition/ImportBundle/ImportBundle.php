@@ -1,5 +1,4 @@
 <?php
-
 namespace Itransition\ImportBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;

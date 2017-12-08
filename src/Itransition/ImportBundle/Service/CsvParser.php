@@ -1,5 +1,4 @@
 <?php
-
 namespace Itransition\ImportBundle\Service;
 
 use parseCSV;

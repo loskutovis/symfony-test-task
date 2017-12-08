@@ -1,5 +1,4 @@
 <?php
-
 namespace Itransition\ImportBundle\Command;
 
 use Itransition\ImportBundle\Entity\Product;

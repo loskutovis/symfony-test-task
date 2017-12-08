@@ -1,5 +1,4 @@
 <?php
-
 namespace Itransition\ImportBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

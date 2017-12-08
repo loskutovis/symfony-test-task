@@ -1,5 +1,4 @@
 <?php
-
 namespace Itransition\ImportBundle\Entity;
 
 use DateTime;
