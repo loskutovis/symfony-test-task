@@ -2,15 +2,14 @@
 
 namespace Tests\AppBundle\Entity;
 
-use AppBundle\Entity\TblProductData;
+use AppBundle\Entity\Product;
 use PHPUnit\Framework\TestCase;
-use Exception;
 
 /**
- * Class TblProductDataTest
+ * Class ProductTest
  * @package Tests\AppBundle\Entity
  */
-class TblProductDataTest extends TestCase
+class ProductTest extends TestCase
 {
     /**
      * @var array $validData
@@ -32,7 +31,7 @@ class TblProductDataTest extends TestCase
     ];
 
     /**
-     * @var TblProductData|null $productData
+     * @var Product|null $productData
      */
     private $productData;
 
@@ -41,25 +40,11 @@ class TblProductDataTest extends TestCase
      */
     protected function setUp()
     {
-        $this->productData = TblProductData::loadFields($this->validData);
+        $this->productData = new Product($this->validData);
     }
 
-    public function testLoad()
+    public function testConstruct()
     {
-        $this->assertInstanceOf(TblProductData::class, $this->productData);
-    }
-
-    public function testCheckProductData()
-    {
-        $this->assertEquals(true, $this->productData->checkProductData());
-    }
-
-    /**
-     * @expectedException Exception
-     * @throws Exception
-     */
-    public function testCheckValue()
-    {
-        $this->productData->checkValue('');
+        $this->assertInstanceOf(Product::class, $this->productData);
     }
 }

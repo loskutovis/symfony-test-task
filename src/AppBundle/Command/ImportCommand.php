@@ -2,7 +2,7 @@
 
 namespace AppBundle\Command;
 
-use AppBundle\Entity\TblProductData;
+use AppBundle\Entity\Product;
 use AppBundle\Service\AbstractParser;
 use AppBundle\Service\CsvParser;
 use Doctrine\ORM\EntityManager;
@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Class importCommand
  * @package AppBundle\Command
  */
-class importCommand extends ContainerAwareCommand
+class ImportCommand extends ContainerAwareCommand
 {
     /**
      * Changes settings of the command
@@ -39,7 +39,7 @@ class importCommand extends ContainerAwareCommand
      * @var AbstractParser $parser
      * @var EntityManager $em
      * @var array $parsedData Content of the file
-     * @var TblProductData|null $productData Product data from the file
+     * @var Product|null $productData Product data from the file
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -52,6 +52,8 @@ class importCommand extends ContainerAwareCommand
             $output->writeln('The file does not exist');
         } else {
             $em = $this->getContainer()->get('doctrine')->getManager();
+            $validator = $this->getContainer()->get('validator');
+
             $parser = new CsvParser($file);
             $parsedData = $parser->parse();
 
@@ -59,10 +61,11 @@ class importCommand extends ContainerAwareCommand
             $notImported = [];
 
             foreach ($parsedData as $data) {
-                $productData = TblProductData::loadFields($data);
+                $product = new Product($data);
+                $error = $validator->validate($product);
 
-                if (!empty($productData) && $productData->checkProductData()) {
-                    $em->persist($productData);
+                if (count($error) == 0) {
+                    $em->persist($product);
                 } else {
                     $notImported[] = $data['Product Name'];
                 }
